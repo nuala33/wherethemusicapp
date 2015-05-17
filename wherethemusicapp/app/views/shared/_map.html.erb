@@ -12,7 +12,7 @@
         title: '<%= object[:name] %>'
       });
       var infowindow<%= i %> = new google.maps.InfoWindow({
-        content: '<h2><%= object[:name] %></h2><p><%= object[:artist] %>'
+        content: '<h2><%= object[:name] %></h2><p><%= object[:artist] %><p><a href="<%= object[:link] %>"target="_blank">More Info</a>'
       });
       google.maps.event.addListener(marker<%= i %>, 'click', function() {
         infowindow<%= i %>.open(map,marker<%= i %>);

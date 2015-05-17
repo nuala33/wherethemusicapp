@@ -21,6 +21,7 @@ class Venue
 				name: venue['venue']['displayName'],
 				#date: venue['end']['date'],
 				artist: venue['displayName'],
+				link: venue['uri'],
 		    latitude: venue['venue']['lat'],
 		    longitude: venue['venue']['lng']
 		  }
