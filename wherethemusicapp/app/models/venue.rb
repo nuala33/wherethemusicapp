@@ -13,12 +13,14 @@ class Venue
 		venues = metro_parsed_response['resultsPage']['results']['event']
 		#venues = venues[0..4]
 		venues_with_coordinates = venues.reject do |venue|
-			venue['venue']['lat'].nil? || venue['venue']['lng'].nil?
+			venue['venue']['lat'].nil? || venue['venue']['lng'].nil? || venue['venue']['displayName'] == "Unknown venue"
 		end
 
 		venues_with_coordinates.map do |venue|
 			{
 				name: venue['venue']['displayName'],
+				#date: venue['end']['date'],
+				artist: venue['displayName'],
 		    latitude: venue['venue']['lat'],
 		    longitude: venue['venue']['lng']
 		  }
