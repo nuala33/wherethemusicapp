@@ -1,0 +1,25 @@
+<script type="text/javascript">
+ function initialize() {
+   var mapOptions = {
+     center: { lat: <%= @latitude %>, lng: <%= @longitude %>},
+     zoom: 14
+   };
+   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    <% collection.each_with_index do |object, i| %>
+      var marker<%= i %> = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= object[:latitude] %>, <%= object[:longitude] %>),
+        map: map,
+        title: '<%= object[:name] %>'
+      });
+      var infowindow<%= i %> = new google.maps.InfoWindow({
+        content: '<h2><%= object[:name] %></h2>'
+      });
+      google.maps.event.addListener(marker<%= i %>, 'click', function() {
+        infowindow<%= i %>.open(map,marker<%= i %>);
+      });
+    <% end %>
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+ 
+<div id="map-canvas"></div>
