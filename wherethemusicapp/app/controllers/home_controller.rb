@@ -4,6 +4,13 @@ class HomeController < ApplicationController
     if params[:q]
     	@latitude, @longitude = Geocoder.coordinates(params[:q])
 			@allvenues = Venue.from_location(@latitude, @longitude)
+			unless @allvenues.class == Array
+			  if @allvenues.http_code == 400
+				  @allvenues = nil
+				  flash[:alert] = 'NO VENUES HERE'
+			  end
+			end
+
 
 #get response
 #get city code
