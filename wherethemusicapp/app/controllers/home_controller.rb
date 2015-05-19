@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 			unless @allvenues.class == Array
 			  if @allvenues.http_code == 400
 				  @allvenues = nil
-				  flash[:alert] = 'NO VENUES HERE'
+				  flash.now[:alert] = 'NO VENUES HERE'
 			  end
 			end
 
